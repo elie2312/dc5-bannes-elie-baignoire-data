@@ -1,29 +1,33 @@
-phrase_utilisateur = input("Veuillez saisir une phrase : ")
+phrase = input("Saisissez votre phrase : ")
 
+phrase_maj = ""
 
-phrase_majuscules = ""
-for char in phrase_utilisateur:
-    if 'a' <= char <= 'z':
-        phrase_majuscules += chr(ord(char) - 32)
+for lettre in phrase:
+    if 'a' <= lettre <= 'z':
+        maj = chr(ord(lettre) - 32)
+        phrase_maj += maj
     else:
-        phrase_majuscules += char
+        phrase_maj += lettre
 
-print("En majuscules :", phrase_majuscules)
+phrase_min = ""
 
-
-phrase_minuscules = ""
-for char in phrase_utilisateur:
-    if 'A' <= char <= 'Z':
-        phrase_minuscules += chr(ord(char) + 32)
+for lettre in phrase:
+    if 'A' <= lettre <= 'Z':
+        min = chr(ord(lettre) + 32)
+        phrase_min += min
     else:
-        phrase_minuscules += char
+        phrase_min += lettre
 
-print("En minuscules :", phrase_minuscules)
+nbmots = 0
+for i, char in enumerate(phrase):
+    if char.isalnum():
+        if i + 1 == len(phrase) or not phrase[i + 1].isalnum():
+            nbmots += 1
+    else:
+        if not char.isspace():
+            if i + 1 == len(phrase) or phrase[i + 1].isspace() or phrase[i + 1].isalnum():
+                nbmots += 1
 
-
-nombre_mots = 1
-for char in phrase_utilisateur:
-    if char == ' ':
-        nombre_mots += 1
-
-print("Le nombre de mots dans la phrase est de", nombre_mots)
+print(phrase_maj)
+print(phrase_min)
+print(nbmots)
